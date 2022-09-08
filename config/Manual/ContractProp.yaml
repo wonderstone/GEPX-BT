@@ -1,0 +1,44 @@
+---
+# viper's GetStringMap function makes key value lowercase
+TARGETPROP:
+  STOCK:
+    ST:
+        ContractSize:  100.0
+        TransferFeeRate:  0.00001
+        TaxRate:  0.001
+        CommBrokerRate:  0.0000687
+    MainBoard:
+        ContractSize:  100.0
+        TransferFeeRate:  0.00001
+        TaxRate:  0.001
+        CommBrokerRate:  0.0000687
+    STAR:
+        ContractSize:  100.0
+        TransferFeeRate:  0.00001
+        TaxRate:  0.001
+        CommBrokerRate:  0.0000687
+    ChiNext:
+        ContractSize:  100.0
+        TransferFeeRate:  0.00001
+        TaxRate:  0.001
+        CommBrokerRate:  0.0000687
+    ETF:
+        ContractSize:  100.0
+        TransferFeeRate:  0.00001
+        TaxRate:  0.0
+        CommBrokerRate:  0.0000687
+
+  FUTURES:
+    au2210:
+        ContractSize:  1000.0
+        TickSize:  0.02
+        MarginLong:  10.0
+        MarginShort:  10.0
+        MarginBroker:  0.0
+        IsCommRateType: false
+        CommOpen:  2.0
+        CommCloseToday:  0.0
+        CommClosePrevious:  2.0
+        CommBroker:  0.01
+
+...

@@ -1,0 +1,24 @@
+---
+# viper's GetStringMap function makes key value lowercase
+GEP:
+    FuncWeight:  [["-",2],["/",2]]
+    Iteration:  10 # 迭代次数
+    ExpectFitness:  50.0 # 满意预期，达到即终止，可设定大一些，迫使算法持续搜索
+    PMutate:  0.2
+    PIS:  0.1
+    GLIS:  3
+    PRIS:  0.1
+    GLRIS:  3
+    PGene:  0.05
+    P1P:  0.05
+    P2P:  0.05
+    PR:  0.03
+    NumGenomeset: 20 # 当采用genomeset形式，本数值相当于population，下数值相当于输出几个表达式
+    NumGenomes:  10 # 当采用genome形式，本数值相当于population， should be >=2 or panic
+    HeadSize:  5
+    numGenomesPerGenomeSet:  2  # 当采用genomeset形式的时候，此字段有意义
+    numGenesPerGenome:  2
+    numConstants:  0
+    linkFunc:  "+"
+    Mode:  "Default"
+

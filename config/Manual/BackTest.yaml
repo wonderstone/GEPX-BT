@@ -1,0 +1,45 @@
+---
+# viper's GetStringMap function makes key value lowercase
+# SIndiNames：the fields for GEP
+# SCsvDatafields: given by other code or duplicate from the csv header
+Default:
+    #  Section for virtual account 
+    StockInitValue:  100000.0
+    FuturesInitValue:  0.0
+    #  Section for data range
+    BeginDate:  "2017/10/9 9:39"
+    EndDate:  "2017/10/20 15:00"
+    #  Section for Strategy Targets and info fields
+    # SInstrNames:  ["SH600409","SZ000058"]
+    # SIndiNames:  ["open","high","low","close","vol","ma5","ma10"]
+    # SCsvDatafields:  ["open","high","low","close","vol","amount","ma5","ma10"]
+    # 此处为样例标的信息、参与GEP指标信息、全部数据信息
+    SInstrNames:  ["SZ002673"]
+    SIndiNames:  ["close","vol","ma1"]
+    SCsvDatafields:  ["open","high","low","close","vol","amount","change","changerate","amplitude",	"openinterest","ma1","ma2","ma3","ma4"]
+    # 期货为空
+    FInstrNames:  []
+    FIndiNames:  [] 
+    FCsvDatafields:  []
+    # FInstrNames:  ["a1409"]
+    # FIndiNames:  ["open","high"]
+    # FCsvDatafields:  ["open","high","low","close","vol","amount","openinterest"]
+    #  Section for CSV data dir
+    #  注意 由于是相对路径 模块测试与main运行略有不同  main ./  test ../
+    StockDataDir:  "./tmpdata/stockdata/10min"
+    FuturesDataDir:  "./tmpdata/futuresdata/1min"
+    FuturesMTMDataDir:  "./tmpdata/futuresdata/1day"
+    #  Section for ContractProp
+    ConfName:  "ContractProp"
+    CPDataDir:  "./config/Manual"
+    #  Section for Matcher parameter
+    MatcherSlippage4S:  0.01
+    MatcherSlippage4F:  1.0
+    #  Section for Performance Analytics Parameter
+    RiskFreeRate:  0.00
+    PAType:  "TA"
+    #  Section for Strategy Module Selection
+    StrategyModule:  "Simple"
+    SMGEPType:  "Genome"
+    SMName:  "Strategy"
+    SMDataDir:  "./config/Manual"       

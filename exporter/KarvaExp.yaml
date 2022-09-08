@@ -1,0 +1,13 @@
+FuncNames:
+    - +
+    - '-'
+    - '*'
+    - /
+    - AND1
+    - OR1
+HeadSize: 5
+KE:
+    - S1
+Mode: Default
+linkFunc: AND1
+numConstants: 0

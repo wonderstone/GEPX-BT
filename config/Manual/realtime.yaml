@@ -1,0 +1,182 @@
+AFields:
+    SIndiNmsAfter:
+        - ma1
+        - close
+        - vol
+ContractProp:
+    CPDataDir: ./config/Manual
+    ConfName: ContractProp
+DataFields:
+    fcsvdatafields: []
+    findinames: []
+    finstrnames: []
+    scsvdatafields:
+        - open
+        - high
+        - low
+        - close
+        - vol
+        - amount
+        - change
+        - changerate
+        - amplitude
+        - openinterest
+        - ma1
+        - ma2
+        - ma3
+        - ma4
+    sindinames:
+        - close
+        - vol
+        - ma1
+    sinstrnames:
+        - SZ002673
+MatcherParam:
+    MatcherSlippage4F: 1
+    MatcherSlippage4S: 0.01
+PA:
+    PAType: TA
+    RiskFreeRate: 0
+StgModel:
+    SMDataDir: ./config/Manual
+    SMGEPType: Genome
+    SMName: Strategy
+    StrategyModule: Simple
+VA:
+    sacct:
+        inittime: 2017/10/9 9:39
+        udtime: 2021/1/5 10:30
+        mktval: 104436.35826300002
+        fundavail: 5775.358263000004
+        allprofit: 0
+        allcommission: 50.941736999999996
+        posmap:
+            SZ002673:
+                udtime: 2021/1/5 10:30
+                postdys: []
+                posprevs:
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4281
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4378
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4378
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4378
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4184
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4086
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.4281
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.3891
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.3989
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+                    - udtime: 2021/1/5 10:30
+                      instid: SZ002673
+                      baseprice: 9.3891
+                      lastprice: 9.8661
+                      num: 10
+                      equity: 9866.1
+                      scp:
+                        contractsize: 100
+                        transferfeerate: 1e-05
+                        taxrate: 0.001
+                        commbrokerrate: 6.87e-05
+        marketvalueslice: []
+        uuid: d860a5df-ba0a-4b53-a287-0202358a60dd
+    facct:
+        inittime: 2017/10/9 9:39
+        udtime: 2017/10/9 9:39
+        bmkval: 0
+        mktval: 0
+        fundavail: 0
+        allprofit: 0
+        allcommission: 0
+        posmap: {}
+        marketvalueslice:
+            - time: 2017/10/9 9:39
+              mktval: 0
+        uuid: 69070e6b-3fa3-4b7c-90bd-2452c0dfde31

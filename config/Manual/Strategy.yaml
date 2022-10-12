@@ -3,3 +3,6 @@
 Default:
     SNum:  10
     FNum:  10
+    # record the essential data fields
+    SESSDFLD:  ["open","high"]
+    FESSDFLD:  []

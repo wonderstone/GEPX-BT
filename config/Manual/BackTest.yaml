@@ -15,7 +15,7 @@ Default:
     # SCsvDatafields:  ["open","high","low","close","vol","amount","ma5","ma10"]
     # 此处为样例标的信息、参与GEP指标信息、全部数据信息
     SInstrNames:  ["SZ002673"]
-    SIndiNames:  ["close","vol","ma1"]
+    SIndiNames:  ["close","vol","ma1","open","high","low","ma2","ma3","ma4" ]
     SCsvDatafields:  ["open","high","low","close","vol","amount","change","changerate","amplitude",	"openinterest","ma1","ma2","ma3","ma4"]
     # 期货为空
     FInstrNames:  []

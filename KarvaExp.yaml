@@ -1,0 +1,14 @@
+FuncNames:
+    - '-'
+    - /
+    - +
+    - '*'
+    - OR1
+    - AND1
+HeadSize: 5
+KES:
+    - AND1.-.d3.AND1./.d2.d1.d0.d3.d0.d3
+    - OR1.d1.*.d1.d3.d2.d1.d0.d0.d3.d0
+Mode: Genome
+linkFunc: +
+numConstants: 0

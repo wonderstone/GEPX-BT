@@ -1,8 +1,8 @@
 ---
 # viper's GetStringMap function makes key value lowercase
 GEP:
-    FuncWeight:  [["-",2],["/",2]]
-    Iteration:  10 # 迭代次数
+    FuncWeight:  [["-",2],["/",2],["+",2],["*",2],["OR1",2],["AND1",2]]
+    Iteration:  20 # 迭代次数
     ExpectFitness:  50.0 # 满意预期，达到即终止，可设定大一些，迫使算法持续搜索
     PMutate:  0.2
     PIS:  0.1
@@ -20,5 +20,5 @@ GEP:
     numGenesPerGenome:  2
     numConstants:  0
     linkFunc:  "+"
-    Mode:  "Default"
+    Mode:  "Genome"
 

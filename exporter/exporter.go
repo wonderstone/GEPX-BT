@@ -1,7 +1,7 @@
 package exporter
 
 import (
-	"fmt"
+	// "fmt"
 	"io/ioutil"
 
 	"github.com/rs/zerolog/log"
@@ -28,7 +28,7 @@ func ExportRealtimeYaml(configDir string, sec string, va virtualaccount.VAcct, A
 	m["AFields"] = AInfo
 	// Add Data fields
 	tdm := make(map[string]interface{})
-	fmt.Println(viper.GetString("SMName"))
+	// fmt.Println(viper.GetString("SMName"))
 	tmpMap := viper.GetStringMap(sec)
 	var sinstrnames []string
 	for _, v := range tmpMap["sinstrnames"].([]interface{}) {
@@ -98,7 +98,7 @@ func ExportRealtimeYaml(configDir string, sec string, va virtualaccount.VAcct, A
 }
 
 // export the simplified Karva expression to refactor the realtime expression trees(ETs)
-func ExportSKE(configDir string, sec string, KE interface{}) {
+func ExportSKE(configDir string, sec string, KES interface{}) {
 	// read BackTest configuration from file  viper is not thread safe
 	viper.SetConfigName("GEP")
 	viper.AddConfigPath(configDir)
@@ -106,17 +106,17 @@ func ExportSKE(configDir string, sec string, KE interface{}) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(viper.GetString("SMName"))
+	// fmt.Println(viper.GetString("SMName"))
 	tmpMap := viper.GetStringMap(sec)
 	m := make(map[string]interface{})
 
 	// Add Data fields
 	// make a slice to store all the function names
 	var funcnames []string
-	fmt.Println(tmpMap["funcweight"])
+	// fmt.Println(tmpMap["funcweight"])
 	for _, v := range tmpMap["funcweight"].([]interface{}) {
 		tmp := v.([]interface{})
-		fmt.Println(tmp[0])
+		// fmt.Println(tmp[0])
 		funcnames = append(funcnames, tmp[0].(string))
 	}
 	m["FuncNames"] = funcnames
@@ -126,7 +126,7 @@ func ExportSKE(configDir string, sec string, KE interface{}) {
 	m["linkFunc"] = tmpMap["linkfunc"]
 	m["Mode"] = tmpMap["mode"]
 	//
-	m["KE"] = KE
+	m["KES"] = KES
 	// export yaml file with yaml.v3
 	data, err := yaml.Marshal(&m)
 	if err != nil {
@@ -136,5 +136,5 @@ func ExportSKE(configDir string, sec string, KE interface{}) {
 	if err2 != nil {
 		log.Fatal().Msg(err2.Error())
 	}
-	fmt.Println("data written")
+	// fmt.Println("data written")
 }

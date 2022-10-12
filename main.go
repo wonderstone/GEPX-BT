@@ -68,7 +68,7 @@ type manager struct {
 // NewManager creates a new manager instance
 func NewManagerfromConfig(secBT string, secSTG string, dir string) *manager {
 	BT := framework.NewBackTestConfig(secBT, dir)
-	STG := BT.GetStrategy(secSTG, dir)
+	STG := BT.GetStrategy(secSTG, dir, BT.StrategyMod)
 	return &manager{
 		BT:  &BT,
 		STG: STG,
@@ -86,34 +86,24 @@ func (m *manager) validateFunc(g *genome.Genome) (result float64) {
 	log.Info().Str("Account UUID", va.SAcct.UUID).Float64("AccountVal", va.SAcct.MktVal).Msg("Virtual Account Created!")
 
 	// IterData 这个写法感觉不太好  有机会调整一下
-	m.BT.IterData(&va, m.BT.BCM, pstg, m.BT.CPMap, func(gepin []float64) []float64 { return []float64{g.EvalMath(gepin)} })
-
-	tmp := m.BT.EvalPerformance(va.SAcct.MarketValueSlice)
-	switch m.BT.PAType {
-	case "AR":
-		result = tmp.AnnualizedReturn
-	case "SR":
-		result = tmp.SharpeRatio
-	case "TA":
-		result = tmp.TotalReturn
-	case "MR":
-		result = tmp.AnnualizedReturn / tmp.MaxDrawDown
-	default:
-		result = tmp.TotalReturn
-	}
+	m.BT.IterData(&va, m.BT.BCM, pstg, m.BT.CPMap, func(gepin []float64) []float64 { return []float64{g.EvalMath(gepin)} }, "GEP")
+	einfo := make(map[string]interface{})
+	einfo["tag"] = m.BT.PAType
+	tmp := m.BT.EvalPerformance(va.SAcct.MarketValueSlice, einfo)
 
 	log.Info().Str("Account UUID", va.SAcct.UUID).Float64("AccountVal", va.SAcct.MktVal).Msg("VA EvalPerformance Finished!")
-	return
+	return tmp
 }
 
 // output the VirtualAccount value to csv file
 func (m *manager) outputVAvalues(g *genome.Genome, gr *grammars.Grammar) {
+
 	// new a strategy from backtest
 	pstg := m.STG
 	// new virtual account
 	va := virtualaccount.NewVirtualAccount(m.BT.BeginDate, m.BT.StockInitValue, m.BT.FuturesInitValue)
 	// IterData 这个写法感觉不太好  有机会调整一下
-	m.BT.IterData(&va, m.BT.BCM, pstg, m.BT.CPMap, func(gepin []float64) []float64 { return []float64{g.EvalMath(gepin)} })
+	m.BT.IterData(&va, m.BT.BCM, pstg, m.BT.CPMap, func(gepin []float64) []float64 { return []float64{g.EvalMath(gepin)} }, "GEP")
 	// output the virtual account value to csv file
 	file, err := os.Create("./records.csv")
 	if err != nil {
@@ -129,21 +119,32 @@ func (m *manager) outputVAvalues(g *genome.Genome, gr *grammars.Grammar) {
 			log.Fatal().Msg(err.Error())
 		}
 	}
-
-	fmt.Printf("simple solution could be : %v\n", g)
+	// fmt.Println("--------------------------------")
+	// fmt.Println(gr)
+	// fmt.Printf("simple solution could be : %v\n", g)
 	g.WriteExps(os.Stdout, gr, m.BT.SIndiNames)
 	// yield the additional info from g
 	res, err := g.SimplifyGenome(gr, m.BT.SIndiNames)
 	if err != nil {
 		panic("err")
 	}
-	fmt.Printf("simple solution could be : %v\n", g)
+	// fmt.Println("--------------------------------")
+	// fmt.Println(gr)
+	// fmt.Printf("simple solution could be : %v\n", g)
 	g.WriteExps(os.Stdout, gr, res)
-	fmt.Println(res)
+	// fmt.Println(res)
 	va.SAcct.ResetMVSlice()
 	tmp := make(map[string]interface{})
 	tmp["SIndiNmsAfter"] = res
 	exporter.ExportRealtimeYaml("./config/Manual", "Default", va, tmp)
+	// make a string slice
+	// The zero value of a slice type is nil
+	var KES []string //zero value of a slice is nil
+	for _, v := range g.Genes {
+		KES = append(KES, v.String())
+	}
+
+	exporter.ExportSKE("./config/Manual", "GEP", KES)
 	// use exporter to output the RTyaml file
 	// exporter.ExportRealtimeYaml("../config/Manual", "Default", va, tmp)
 }
@@ -164,21 +165,13 @@ func (m *manager) validateFuncGS(g *genomeset.GenomeSet) (result float64) {
 				res = append(res, v.EvalMath(gepin))
 			}
 			return res
-		})
+		}, "GEP")
 	// mutex.Unlock()
-	tmp := m.BT.EvalPerformance(va.SAcct.MarketValueSlice)
-	switch m.BT.PAType {
-	case "AR":
-		result = tmp.AnnualizedReturn
-	case "SR":
-		result = tmp.SharpeRatio
-	case "TR":
-		result = tmp.TotalReturn
-	case "MR":
-		result = tmp.AnnualizedReturn / tmp.MaxDrawDown
-	}
-	fmt.Println("result: ", result)
-	return
+	einfo := make(map[string]interface{})
+	einfo["tag"] = m.BT.PAType
+	tmp := m.BT.EvalPerformance(va.SAcct.MarketValueSlice, einfo)
+
+	return tmp
 }
 
 func main() {
@@ -219,6 +212,7 @@ func main() {
 		e := model.New(funcs, functions.Float64, NumGenomes, HeadSize, numGenesPerGenome, numTerminals, numConstants, lincfunc, m.validateFunc)
 		s := e.Evolve(Iteration, expectFitness, pm, pis, glis, pris, glris, pgene, p1p, p2p, pr)
 		gr, err := grammars.LoadGoMathGrammar()
+		// log.Fatal().Str("Grammar", gr.).Msg("Check NOW!!!!!!")
 		if err != nil {
 			fmt.Printf("unable to load grammar: %v", err)
 		}
